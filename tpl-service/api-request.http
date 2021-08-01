@@ -1,0 +1,38 @@
+# Settings
+@hostname = localhost
+@port = 4000
+@host = {{hostname}}:{{port}}/api/v1
+
+###
+# Retrieve hello world!
+GET http://{{host}}/hello HTTP/1.1
+content-type: application/json
+
+###
+# Retrieve hello joe!
+GET http://{{host}}/hello/joe HTTP/1.1
+content-type: application/json
+
+
+###
+# Register user
+POST http://{{host}}/users HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "joe",
+    "lastName": "doe",
+    "email": "joe.doe@gmail.com",
+    "password": "joedoe123"
+}
+
+###
+# Retrieve a user
+GET http://{{host}}/users/61063c8ed8773d265ab3428d HTTP/1.1
+content-type: application/json
+
+
+###
+# Retrieve all users
+GET http://{{host}}/users HTTP/1.1
+content-type: application/json

@@ -1,0 +1,33 @@
+# Settings
+@hostname = localhost
+@port = 4001
+@host = {{hostname}}:{{port}}/api/v1
+
+###
+# Register user
+POST http://{{host}}/register HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "joe",
+    "lastName":"doe",
+    "email": "jdoe@mail.com",
+    "password": "joe_3030"
+}
+
+###
+# Login user
+POST http://{{host}}/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "jdoe@mail.com",
+    "password": "joe_3030"
+}
+
+###
+# Retrive welcome message
+GET http://{{host}}/welcome HTTP/1.1
+content-type: application/json
+x-access-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjcyOWRiZDAwZWYwNjIwMDAwZGI0IiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiZmlyc3ROYW1lIjoiam9lIiwibGFzdE5hbWUiOiJkb2UiLCJpYXQiOjE2MjcwOTQxMTMsImV4cCI6MTYyNzE4MDUxM30.Umk9HgbqbDiH2iCH1V5XjCRZUqqKRPaRO1NnylAkWBk
+# Authorization: x-access-token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjcyOWRiZDAwZWYwNjIwMDAwZGI0IiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiaWF0IjoxNjI3MDkxNjczLCJleHAiOjE2MjcxNzgwNzN9.gWk6We0X4nD5CVmrBXw7r_GyUQoaZ9wvLRgUytLgmwo

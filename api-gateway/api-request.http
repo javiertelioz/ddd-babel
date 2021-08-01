@@ -1,0 +1,60 @@
+@hostname = localhost
+@port = 8080
+@host = {{hostname}}:{{port}}
+
+###
+# Retrive Ip
+GET http://{{host}}/ip HTTP/1.1
+content-type: application/json
+
+###
+# Retrive IP with auth headers
+GET http://{{host}}/ip HTTP/1.1
+content-type: application/json
+Authorization: apiKey 5cI3srk8FMb8K37FZ4tPxb:0wNCgrdUl2I1HSvQXBMPz8
+
+###
+# Register user
+POST http://{{host}}/users/register HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "joe",
+    "lastName":"doe",
+    "email": "jdoe@mail.com",
+    "password": "joe_3030"
+}
+
+###
+# Login user
+POST http://{{host}}/users/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "jdoe@mail.com",
+    "password": "joe_3030"
+}
+
+###
+# Retrive welcome message
+GET http://{{host}}/users/welcome HTTP/1.1
+content-type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjcyOWRiZDAwZWYwNjIwMDAwZGI0IiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiZmlyc3ROYW1lIjoiam9lIiwibGFzdE5hbWUiOiJkb2UiLCJpYXQiOjE2MjcwOTQxMTMsImV4cCI6MTYyNzE4MDUxM30.Umk9HgbqbDiH2iCH1V5XjCRZUqqKRPaRO1NnylAkWBk
+# Authorization: x-access-token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjcyOWRiZDAwZWYwNjIwMDAwZGI0IiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiaWF0IjoxNjI3MDkxNjczLCJleHAiOjE2MjcxNzgwNzN9.gWk6We0X4nD5CVmrBXw7r_GyUQoaZ9wvLRgUytLgmwo
+
+###
+# Register pet
+POST http://{{host}}/pets HTTP/1.1
+content-type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjhiYzEyM2Y1ZWQwMDJjOTM5OTRkIiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiZmlyc3ROYW1lIjoiam9lIiwibGFzdE5hbWUiOiJkb2UiLCJpYXQiOjE2MjcxMDAxNTQsImV4cCI6MTYyNzE4NjU1NH0.BLTUDB3EIyTMTR22TzouTRxWIM0MM39Z63_NFCASy7o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBmYjhiYzEyM2Y1ZWQwMDJjOTM5OTRkIiwiZW1haWwiOiJqZG9lQG1haWwuY29tIiwiZmlyc3ROYW1lIjoiam9lIiwibGFzdE5hbWUiOiJkb2UiLCJpYXQiOjE2MjcxMDAxNTQsImV4cCI6MTYyNzE4NjU1NH0.BLTUDB3EIyTMTR22TzouTRxWIM0MM39Z63_NFCASy7o
+
+{
+    "name": "amber",
+    "description": "cat",
+    "image": null,
+    "user": "60fb8bc123f5ed002c93994d",
+    "status": "true",
+    "dob": "",
+    "address": null
+}

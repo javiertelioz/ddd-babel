@@ -1,0 +1,8 @@
+import { resolve } from 'path';
+
+export default {
+    'config': resolve('./src/infrastructure/orm/sequelize/config', 'index.js'),
+    'models-path': resolve('./src/infrastructure/orm/sequelize', 'models'),
+    'seeders-path': resolve('./src/infrastructure/orm/sequelize', 'seeders'),
+    'migrations-path': resolve('./src/infrastructure/orm/sequelize', 'migrations'),
+  }

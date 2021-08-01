@@ -1,0 +1,57 @@
+{
+  "name": "auth-service",
+  "version": "1.0.0",
+  "description": "authentication service using jwt",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2-runtime ecosystem.config.js --env production",
+    "staging": "pm2-runtime ecosystem.config.js --env production",
+    "development": "nodemon --inspect=0.0.0.0:9230 --exec babel-node --legacy-watch index.js --preset-env",
+    "build": "rm -rf dist/ && babel src/ -d dist/src/ && babel index.js -d dist/",
+    "test": "npx jest",
+    "coverage": "npx jest --collectCoverage",
+    "lint": "npx eslint src index.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javiertelioz/microservices-nodejs.git"
+  },
+  "author": "Javier Telio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javiertelioz/microservices-nodejs/issues"
+  },
+  "homepage": "https://github.com/javiertelioz/microservices-nodejs#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-winston": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.3",
+    "morgan": "^1.10.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.14.8",
+    "@babel/eslint-parser": "^7.14.7",
+    "@babel/node": "^7.14.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/runtime": "^7.14.8",
+    "babel-jest": "^27.0.6",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.0.3",
+    "jest-cli": "^27.0.3",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "supertest": "^6.1.4"
+  }
+}

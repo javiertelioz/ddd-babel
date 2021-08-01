@@ -1,0 +1,108 @@
+version: "3"
+
+services:
+  # Template Service
+  # see https://expressjs.com/en/starter/installing.html
+  ms-tpl:
+    build:
+      context: ./tpl-service
+      dockerfile: dev.Dockerfile
+    env_file:
+      - ./tpl-service/.env
+    command: npm run development
+    volumes:
+      - ./tpl-service:/src
+      - /src/node_modules
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    ports:
+      - 4000:4000
+      - 9229:9229
+    depends_on:
+      - mongo
+      - postgres
+
+  # Auth Microservice
+  # see https://expressjs.com/en/starter/installing.html
+  ms-auth:
+    build:
+      context: ./auth-service
+      dockerfile: dev.Dockerfile
+    env_file:
+      - ./auth-service/.env
+    command: npm run development
+    volumes:
+      - ./auth-service:/src
+      - /src/node_modules
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    ports:
+      - 4001:4001
+      - 9230:9230
+    depends_on:
+      - mongo
+
+  # Pet Microservice
+  # see https://expressjs.com/en/starter/installing.html
+  ms-pet:
+    build:
+      context: ./pet-service
+      dockerfile: dev.Dockerfile
+    env_file:
+      - ./pet-service/.env
+    command: npm run development
+    volumes:
+      - ./pet-service:/src
+      - /src/node_modules
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    ports:
+      - 4002:4002
+      - 9231:9231
+    depends_on:
+      - mongo
+
+  # There is a prebuilt PostgreSQL image
+  # see https://hub.docker.com/_/postgres/
+  postgres:
+    image: "postgres:12.2-alpine"
+    environment:
+      POSTGRES_USER: services_db
+      POSTGRES_PASSWORD: services_db
+      POSTGRES_DB: services_db
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+
+  # There is a prebuilt MongoDB image
+  # see https://hub.docker.com/r/mvertes/alpine-mongo/ for more details.
+  mongo:
+    image: mvertes/alpine-mongo
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+  
+  # There is a prebuilt Redis image
+  # see https://hub.docker.com/_/redis/ for more details.
+  redis:
+    image: "redis:6.0.12-alpine"
+    mem_limit: 512m
+    mem_reservation: 128M
+    cpus: 1
+    expose:
+      - 6379
+
+volumes:
+  postgres-data:
+  mongo-data:

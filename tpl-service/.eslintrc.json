@@ -1,0 +1,55 @@
+{
+  "env": {
+      "node": true,
+      "es6": true,
+      "mocha": true,
+      "jest": true
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:node/recommended",
+      "plugin:prettier/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:promise/recommended",
+      "prettier"
+  ],
+  "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+      // "ecmaVersion": 2020,
+      //"sourceType": "module",
+      "allowImportExportEverywhere": true,
+      "ecmaFeatures": {
+        "globalReturn": false
+      }
+  },
+  "rules": {
+      "no-console": "off",
+      "prettier/prettier": "error",
+      "node/no-unsupported-features/es-syntax": [
+        "error",
+        { "ignores": ["modules"] }
+      ],
+      "valid-jsdoc": ["error", {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }],
+      "require-jsdoc": ["error", {
+          "require": {
+              "FunctionDeclaration": true,
+              "MethodDefinition": true,
+              "ClassDeclaration": true
+          }
+      }],
+      "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
+      "brace-style": "off"
+  }
+}

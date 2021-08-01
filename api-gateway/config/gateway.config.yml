@@ -1,0 +1,93 @@
+http:
+  port: 8080
+admin:
+  port: 9876
+  host: localhost
+apiEndpoints:
+  users:
+    path: "/users*"
+    methods: ["POST", "GET", "PUT"]
+  pets:
+    path: "/pets*"
+    methods: ["POST", "GET", "PUT", "DELETE"]
+  api:
+    host: localhost
+    paths: "/ip"
+serviceEndpoints:
+  users:
+    url: "http://localhost:4001/api/v1"
+  pets:
+    url: "http://localhost:4002/api/v1"
+  httpbin:
+    url: "https://httpbin.org"
+policies:
+  - basic-auth
+  - cors
+  - jwt
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+  - request-transformer
+pipelines:
+  userPipeline:
+    apiEndpoints:
+      - users
+    policies:
+      - log:
+          action:
+            message: "User Service ${req.method} ${req.originalUrl}"
+      - proxy:
+          action:
+            serviceEndpoint: users
+  petPipeline:
+    apiEndpoints:
+      - pets
+    policies:
+      - log:
+          action:
+            message: "Pet Service ${req.method} ${req.originalUrl}"
+      - jwt:
+          action:
+            secretOrPublicKey: "your_secret_key"
+            checkCredentialExistence: false
+      - request-transformer:
+          action:
+            body:
+              add:
+                user: req.user
+            headers:
+              add:
+                Authorization: "Bearer "
+      - proxy:
+          action:
+            serviceEndpoint: pets
+
+  default:
+    apiEndpoints:
+      - api
+    policies:
+      - log:
+          - action:
+              serviceEndpoint: httpbin
+              message: "Bin Service ${req.method} ${req.originalUrl}"
+      # Uncomment `key-auth:` when instructed to in the Getting Started guide.
+      # - key-auth:
+      - proxy:
+          - action:
+              serviceEndpoint: httpbin
+              changeOrigin: true
+      - jwt:
+          action:
+            secretOrPublicKey: "the-secret-key"
+            checkCredentialExistence: false
+      - request-transformer:
+          action:
+            body:
+              add:
+                user: req.user
+            headers:
+              add:
+                Authorization: "Bearer "

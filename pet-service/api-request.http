@@ -1,0 +1,24 @@
+# Settings
+@hostname = localhost
+@port = 4002
+@host = {{hostname}}:{{port}}/api/v1
+
+###
+# Register pet
+POST http://{{host}}/pets HTTP/1.1
+content-type: application/json
+
+{
+    "name": "amber",
+    "description": "cat",
+    "image": null,
+    "user": "60fb8bc123f5ed002c93994d",
+    "status": "true",
+    "dob": "",
+    "address": null
+}
+
+###
+# Retrieve pet
+GET http://{{host}}/pets/60fb8c3664b64900694b5491 HTTP/1.1
+content-type: application/json

@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "name": "Auth Service",
+            "request": "attach",
+            "port": 9230,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}/auth-service",
+            "remoteRoot": "/src",
+            "protocol": "inspector",
+            "restart": true,
+        },
+        {
+            "type": "node",
+            "name": "API Gateway Service",
+            "request": "attach",
+            "port": 9231,
+            "address": "localhost",
+            "localRoot": "${workspaceFolder}/api-gateway",
+            "remoteRoot": "/src",
+            "protocol": "inspector",
+            "restart": true,
+        }
+    ]
+}
