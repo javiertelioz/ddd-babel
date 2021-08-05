@@ -4,9 +4,7 @@ const { REDIS_HOST, REDIS_PORT } = process.env;
 
 const redisClient = () => {
   const handleError = err => console.log('Redis client error', err.stack);
-  const handleSuccess = () => {
-    console.info(`🗄️  Redis\t\t ${REDIS_HOST}:${REDIS_PORT}\n`);
-  };
+  const handleSuccess = () => console.info(`🗄️  Redis\t\t ${REDIS_HOST}:${REDIS_PORT}\n`);
 
   const redisClient = createClient({
     host: REDIS_HOST,

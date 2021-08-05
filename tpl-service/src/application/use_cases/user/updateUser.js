@@ -12,14 +12,16 @@ import { User } from '../../../domain/entities/user';
  * @returns {object} User entity
  * @throws {DuplicateEntityException} Entity duplicate
  */
-export async function UpdateUser(id, { firstName, lastName, email, gender }, { userRepository }) {
+async function UpdateUser(id, { firstName, lastName, email, gender }, { userRepository }) {
   const exists = await userRepository.get(id);
 
   if (!exists) {
-    throw new Error('Entity not found.');
+    throw new Error('entity not found');
   }
 
-  const user = new User(null, firstName, lastName, email, null, null, null, gender);
+  const user = new User(id, firstName, lastName, email, null, null, null, gender);
 
-  return userRepository.merge(user);
+  return await userRepository.merge(user);
 }
+
+export { UpdateUser };

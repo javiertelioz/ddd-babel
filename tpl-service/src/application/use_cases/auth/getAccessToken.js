@@ -6,18 +6,22 @@
  * @param {string} password User password
  * @returns {string} JWT string
  */
-export async function GetAccessToken(email, password, { userRepository, accessTokenManager, encryptionManager }) {
-  const user = userRepository.getByEmail(email);
+async function GetAccessToken({ email, password }, { userRepository, jwtManager, bcryptManager }) {
+  const user = await userRepository.getByEmail(email);
 
-  if (!user || user.password !== password) {
+  if (!user) {
     throw new Error('email or password are incorrect');
   }
 
-  const hash = await encryptionManager.compare(password, user.password);
+  const hash = await bcryptManager.compare(password, user.password);
 
   if (!hash) {
     throw new Error('email or password are incorrect');
   }
 
-  return accessTokenManager.generate({ uid: user.id, role: user.role });
+  const token = jwtManager.generate({ uid: user.id, role: user.role });
+
+  return { token };
 }
+
+export default GetAccessToken;

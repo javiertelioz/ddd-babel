@@ -46,15 +46,14 @@ class UserRepositoryMongo extends UserRepository {
    * @returns {Promise<User|boolean>} User entity if it performs the operation successfully, otherwise it returns a boolean
    */
   async merge(userEntity) {
-    const { id, firstName, lastName, email, password } = userEntity;
-    const mongooseUser = UserSchema.findByIdAndUpdate(
+    const { id, firstName, lastName, email } = userEntity;
+    const mongooseUser = await UserSchema.findByIdAndUpdate(
       id,
       {
         $set: {
           firstName,
           lastName,
           email,
-          password,
         },
       },
       {

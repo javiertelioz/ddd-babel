@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 
+import Logger from './infrastructure/logger'
 // import Redis from './infrastructure/orm/redis';
 import Mongoose from './infrastructure/orm/mongoose';
 import Sequelize from './infrastructure/orm/sequelize';
@@ -11,8 +12,8 @@ dotenv.config();
 // Start server
 const start = async () => {
   try {
-    console.log(`** Application: ${process.env.APP_NAME}`);
-    console.log(`** Run Environment: ${process.env.NODE_ENV}\n`);
+    Logger.log(`** Application: ${process.env.APP_NAME}`);
+    Logger.log(`** Run Environment: ${process.env.NODE_ENV}\n`);
 
     // Redis().start();
     await Mongoose();
@@ -20,7 +21,7 @@ const start = async () => {
 
     Server().start();
   } catch (err) {
-    console.log(err);
+    Logger.error(err);
   }
 };
 

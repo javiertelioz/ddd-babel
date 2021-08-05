@@ -11,11 +11,11 @@
  * @returns {JWT} Access token data
  * @throws {InvalidTokenException} Invalid access token
  */
-export function VerifyAccessToken(token, { accessTokenManager }) {
-  const decoded = accessTokenManager.decode(token);
+function VerifyAccessToken(token, { jwtManager }) {
+  const decoded = jwtManager.decode(token);
 
   if (!decoded) {
-    throw new Error('invalid access token');
+    throw new Error("you're not authorized");
   }
 
   return {
@@ -23,3 +23,5 @@ export function VerifyAccessToken(token, { accessTokenManager }) {
     role: decoded.role,
   };
 }
+
+export default VerifyAccessToken;

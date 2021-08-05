@@ -1,6 +1,6 @@
 import { sign, verify } from 'jsonwebtoken';
 
-import { AccessTokenManager } from '../../application/security/accessTokenManager';
+import AccessTokenManager from '../../application/security/accessTokenManager';
 
 /**
  * Class representing a jwtManager

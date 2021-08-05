@@ -4,32 +4,51 @@
   },
   "source": {
     "include": [
-      "src"
+      "src",
+      "README.md",
+      "package.json"
     ],
     "exclude": [
       ".git",
       "node_modules"
     ],
-    "includePattern": ".+\\.js(x|doc)?$"
+    "includePattern": ".+\\.js$"
   },
-  "plugins": ["plugins/markdown"],
+  "plugins": [
+    "plugins/markdown"
+  ],
   "opts": {
     "encoding": "utf8",
-    "template": "templates/default",
-    "destination": "docs",
+    "destination": "documentation/docs",
     "recurse": true,
-    "verbose": true
-  },
-  "markdown": {
-    "parser": "gfm",
-    "hardwrap": true
-  },
-  "templates": {
-    "cleverLinks": false,
-    "monospaceLinks": false,
-    "default": {
-      "outputSourceFiles": true,
-      "includeDate": true
+    "verbose": true,
+    "private": true,
+    "template": "node_modules/clean-jsdoc-theme",
+    "theme_opts": {
+      "theme": "light",
+      "title": "clean-jsdoc-theme",
+      "meta": [
+        {
+          "name": "author",
+          "content": "Javier Telio"
+        },
+        {
+          "name": "description",
+          "content": "API built with Node/Express that follows DDD + Clean Architecture principles"
+        }
+      ]
+    },
+    "markdown": {
+      "parser": "gfm",
+      "hardwrap": true
+    },
+    "templates": {
+      "cleverLinks": false,
+      "monospaceLinks": false,
+      "default": {
+        "outputSourceFiles": true,
+        "includeDate": true
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
-import helloRouter from './hello';
+import authRouter from './auth';
 import userRouter from './user';
+import helloRouter from './hello';
 
 /**
  * Register routers
@@ -19,5 +20,5 @@ export default app => {
   });
 
   // Routers V1
-  app.use('/api/v1', [helloRouter, userRouter]);
+  app.use('/api/v1', [authRouter, helloRouter, userRouter]);
 };

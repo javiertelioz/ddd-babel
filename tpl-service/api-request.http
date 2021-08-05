@@ -13,7 +13,6 @@ content-type: application/json
 GET http://{{host}}/hello/joe HTTP/1.1
 content-type: application/json
 
-
 ###
 # Register user
 POST http://{{host}}/users HTTP/1.1
@@ -27,12 +26,42 @@ content-type: application/json
 }
 
 ###
-# Retrieve a user
-GET http://{{host}}/users/61063c8ed8773d265ab3428d HTTP/1.1
+# Login user
+POST http://{{host}}/auth/login HTTP/1.1
 content-type: application/json
 
+{
+    "email": "joe.doe@gmail.com",
+    "password": "joedoe123"
+}
 
 ###
 # Retrieve all users
 GET http://{{host}}/users HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+
+###
+# Retrieve a user
+GET http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+
+###
+# Update a user profile
+PUT http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+
+{
+    "firstName": "Joe",
+    "lastName": "Doe",
+    "email": "joe.doe@gmail.com"
+}
+
+
+###
+# Delete a user profile
+DELETE http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w

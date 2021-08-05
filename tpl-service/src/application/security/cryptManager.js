@@ -1,27 +1,27 @@
 import NotImplementedException from '../../domain/exceptions/NotImplementedException';
 
 /**
- * Interface represent a AccessTokenManager (JWT).
+ * Interface for represent a CryptManager.
  * @interface
  */
-class AccessTokenManager {
+class CryptManager {
   /**
-   * Generate jwt
+   * Generate a hash
    * @returns {string} JWT
    * @throws {NotImplementedException} not implements
    */
-  generate() {
+  hash() {
     throw new NotImplementedException();
   }
 
   /**
-   * Retrieve jwt information
-   * @returns {object} JWT object
+   * Compare hash
+   * @returns {boolean} Compare hash
    * @throws {NotImplementedException} not implements
    */
-  decode() {
+  compare() {
     throw new NotImplementedException();
   }
 }
 
-export default AccessTokenManager;
+export default CryptManager;

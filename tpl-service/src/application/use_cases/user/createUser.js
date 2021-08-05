@@ -11,14 +11,16 @@ import { User } from '../../../domain/entities/user';
  * @returns {object} User entity
  * @throws {DuplicateEntityException} Entity duplicate
  */
-export async function CreateUser({ firstName, lastName, email, password }, { userRepository }) {
+export async function CreateUser({ firstName, lastName, email, password }, { userRepository, bcryptManager }) {
   const exists = await userRepository.getByEmail(email);
 
   if (exists) {
     throw new Error('user already exists, check that it is not disabled');
   }
 
-  const user = new User(null, firstName, lastName, email, password);
+  const hashedPassword = bcryptManager.hash(password);
+
+  const user = new User(null, firstName, lastName, email, hashedPassword);
 
   return userRepository.persist(user);
 }

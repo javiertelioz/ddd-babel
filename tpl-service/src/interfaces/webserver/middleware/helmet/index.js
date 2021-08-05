@@ -1,7 +1,10 @@
 import helmet from 'helmet';
 
+import Logger from '../../../../infrastructure/logger';
+
 export default app => {
-  console.log('** Use middleware -> Helmet');
+
+  Logger.log('-> Helmet middleware');
 
   app.use(helmet());
   app.use(helmet.xssFilter());

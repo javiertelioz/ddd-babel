@@ -1,7 +1,9 @@
 import cors from 'cors';
 
+import Logger from '../../../../infrastructure/logger';
+
 export default app => {
-  console.log('** Use middleware -> Cors');
+  Logger.log('-> Cors middleware');
   app.use(
     cors({
       origin: true,

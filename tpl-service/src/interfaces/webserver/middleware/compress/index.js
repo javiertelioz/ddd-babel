@@ -1,6 +1,8 @@
 import compress from 'compression';
 
+import Logger from '../../../../infrastructure/logger';
+
 export default app => {
-  console.log('** Use middleware -> Compression');
+  Logger.log('-> Compression middleware');
   app.use(compress());
 };
