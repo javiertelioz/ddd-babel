@@ -6,11 +6,11 @@ describe('Security: CryptManager', () => {
   test('Should be resolved with an NotImplementedException in the hash function', () => {
     // then
     expect(cryptManager.hash).toThrow();
-    expect(cryptManager.hash).toThrowError('method not implemented')
+    expect(cryptManager.hash).toThrowError('method not implemented');
   });
 
   test('Should be resolved with an NotImplementedException in the compare function', () => {
     expect(cryptManager.compare).toThrow();
-    expect(cryptManager.compare).toThrowError('method not implemented')
+    expect(cryptManager.compare).toThrowError('method not implemented');
   });
 });

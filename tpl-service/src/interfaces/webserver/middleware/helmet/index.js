@@ -3,7 +3,6 @@ import helmet from 'helmet';
 import Logger from '../../../../infrastructure/logger';
 
 export default app => {
-
   Logger.log('-> Helmet middleware');
 
   app.use(helmet());

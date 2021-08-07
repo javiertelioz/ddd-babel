@@ -1,11 +1,16 @@
 import { connect, version } from 'mongoose';
 
+import Logger from '../../logger';
+
 /**
  * Start mongo server
  * @async
  * @returns {void}
  */
 const start = async () => {
+  Logger.log(`💽 MongoDB\t ${process.env.MONGO_URI}`);
+  Logger.log(`\t Version\t ${version}\n`);
+
   try {
     const OPTIONS = {
       poolSize: 10,
@@ -16,11 +21,8 @@ const start = async () => {
     };
 
     await connect(process.env.MONGO_URI, OPTIONS);
-
-    console.log(`💽 MongoDB\t ${process.env.MONGO_URI}`);
-    console.log(`\t Version\t ${version}\n`);
   } catch (error) {
-    console.log('database connection failed. exiting now...');
+    Logger.error(`Database connection failed. error ${error}`);
   }
 };
 
