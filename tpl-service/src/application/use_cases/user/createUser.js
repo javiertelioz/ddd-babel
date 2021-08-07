@@ -2,14 +2,30 @@ import { User } from '../../../domain/entities/user';
 
 /**
  * Create new user
- * @namespace application/use_cases/user/createUser
+ * @function
  * @async
- * @param {string} firstName User firstname
- * @param {string} lastName User lastName
- * @param {string} email User email
- * @param {string} password User password
- * @returns {object} User entity
- * @throws {DuplicateEntityException} Entity duplicate
+ * @module application/use_cases/user/CreateUser
+ * @param {Object} payload - Request payload
+ * @param {string} payload.firstName User firstName
+ * @param {string} payload.lastName User lastName
+ * @param {string} payload.email User email
+ * @param {string} payload.password User password
+ * @param {Object} dependencies - Dependencies
+ * @param {function} dependencies.userRepository - User Repository.
+ * @param {function} dependencies.bcryptManager - Bcrypt Manager.
+ * @throws {Error} User already exists, check that it is not disabled
+ * @returns {Promise<User>} User entity
+ * @example <caption>Example usage of CreateUser.</caption>
+ * CreateUser({
+ *     firstName: "joe",
+ *     lastName: "doe",
+ *     email: "joe@mail.com",
+ *     password: "doe_2021",
+ *  },
+ *  {
+ *     userRepository,
+ *     bcryptManager
+ * });
  */
 export async function CreateUser({ firstName, lastName, email, password }, { userRepository, bcryptManager }) {
   const exists = await userRepository.getByEmail(email);

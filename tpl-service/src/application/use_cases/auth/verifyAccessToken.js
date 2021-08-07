@@ -6,10 +6,16 @@
 
 /**
  * Verify access token
- * @namespace application/use_cases/auth/verifyAccessToken
+ * @function
+ * @module application/use_cases/auth/VerifyAccessToken
  * @param {string} token Access token
- * @returns {JWT} Access token data
+ * @param {object} dependencies - Dependencies
+ * @param {function} dependencies.jwtManager - JWT Manager.
  * @throws {InvalidTokenException} Invalid access token
+ * @throws {Error} You're not authorized
+ * @returns {JWT} Access token data
+ * @example <caption>Example usage of VerifyAccessToken.</caption>
+ * VerifyAccessToken("eyJ0eXAiO...", { jwtManager })
  */
 function VerifyAccessToken(token, { jwtManager }) {
   const decoded = jwtManager.decode(token);
