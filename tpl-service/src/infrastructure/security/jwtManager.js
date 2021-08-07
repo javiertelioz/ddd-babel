@@ -3,15 +3,18 @@ import { sign, verify } from 'jsonwebtoken';
 import AccessTokenManager from '../../application/security/accessTokenManager';
 
 /**
- * Class representing a jwtManager
+ * Class representing a JWT manager
  * @class
- * @extends AccessTokenManager
+ * @classdesc
+ * @augments AccessTokenManager
  */
 class JWTManager extends AccessTokenManager {
   /**
-   * Generate jwt
-   * @param {object} payload payload
-   * @returns {string} jwt
+   * Synchronously sign the given payload into a JSON Web Token string
+   * @function
+   * @implements {AccessTokenManager#generate}
+   * @param {string|object} payload Payload to sign, could be an literal, buffer or string
+   * @returns {string}  The JSON Web Token string
    */
   generate(payload) {
     return sign(payload, process.env.APP_JWT_SECRET, {
@@ -21,12 +24,14 @@ class JWTManager extends AccessTokenManager {
   }
 
   /**
-   * Decode jwt
-   * @param {string} accessToken Access token
-   * @returns {object} jwt data
+   * Verify given token using a secret or a public key to get a decoded token
+   * @function
+   * @implements {AccessTokenManager#decode}
+   * @param {string} token JWT string to verify
+   * @returns {object|string} The decoded token.
    */
-  decode(accessToken) {
-    return verify(accessToken, process.env.APP_JWT_SECRET);
+  decode(token) {
+    return verify(token, process.env.APP_JWT_SECRET);
   }
 }
 

@@ -27,7 +27,7 @@ import { User } from '../../../domain/entities/user';
  *     bcryptManager
  * });
  */
-export async function CreateUser({ firstName, lastName, email, password }, { userRepository, bcryptManager }) {
+async function CreateUser({ firstName, lastName, email, password }, { userRepository, bcryptManager }) {
   const exists = await userRepository.getByEmail(email);
 
   if (exists) {
@@ -40,3 +40,5 @@ export async function CreateUser({ firstName, lastName, email, password }, { use
 
   return userRepository.persist(user);
 }
+
+export { CreateUser };

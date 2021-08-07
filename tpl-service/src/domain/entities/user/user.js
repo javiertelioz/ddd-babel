@@ -1,11 +1,13 @@
 /**
  * User class
  * @class
- * @classdesc
+ * @classdesc User entity
  */
 class User {
   /**
    * User Entity
+   *
+   * @module domain/entities/user/User
    *
    * @param {string|number} id User id
    * @param {string} firstName User firstname eg. joe
@@ -15,7 +17,7 @@ class User {
    * @param {string} picture User picture url
    * @param {string} phone User phone eg. +55 55 55 55 55
    * @param {string} gender User gender eg. male
-   * @param {Date} dob User dob 2001-01-02
+   * @param {Date} dob User dob eg. 2001-01-02
    */
   constructor(
     id = null,

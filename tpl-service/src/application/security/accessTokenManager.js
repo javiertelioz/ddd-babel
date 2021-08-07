@@ -1,23 +1,29 @@
 import NotImplementedException from '../../domain/exceptions/NotImplementedException';
 
 /**
- * Interface represent a AccessTokenManager (JWT).
+ * Interface represent a accesstokenmanager.
  * @interface
  */
 class AccessTokenManager {
   /**
-   * Generate jwt
-   * @returns {string} JWT
-   * @throws {NotImplementedException} not implements
+   * Synchronously sign the given payload into a JSON Web Token string
+   * @function
+   * @name AccessTokenManager#generate
+   * @param {string|object} payload Payload to sign, could be an literal, buffer or string
+   * @throws {NotImplementedException} Not implements
+   * @returns {string} The JSON Web Token string
    */
   generate() {
     throw new NotImplementedException();
   }
 
   /**
-   * Retrieve jwt information
-   * @returns {object} JWT object
-   * @throws {NotImplementedException} not implements
+   * Verify given token using a secret or a public key to get a decoded token
+   * @function
+   * @name AccessTokenManager#decode
+   * @param {string} token JWT string to verify
+   * @throws {NotImplementedException} Not implements
+   * @returns {object|string} The decoded token
    */
   decode() {
     throw new NotImplementedException();
