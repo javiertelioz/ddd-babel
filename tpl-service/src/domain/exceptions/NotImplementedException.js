@@ -3,6 +3,11 @@
  * @class
  * @extends Error
  * @throws {NotImplementedException}
+ *
+ * @module domain/exceptions/NotImplementedException
+ *
+ * @example <caption>Example usage of NotImplementedException.</caption>
+ * throw new NotImplementedException();
  */
 class NotImplementedException extends Error {
   /**

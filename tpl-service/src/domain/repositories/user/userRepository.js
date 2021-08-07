@@ -7,9 +7,12 @@ import NotImplementedException from '../../exceptions/NotImplementedException';
 class UserRepository {
   /**
    * Create user
+   * @async
+   * @function
+   * @name UserRepository#persist
    * @param {object} entity Entity
    * @throws {NotImplementedException}
-   * @returns {object} User entity
+   * @returns {Promise<Object>} User entity
    */
   persist() {
     throw new NotImplementedException();
@@ -17,9 +20,13 @@ class UserRepository {
 
   /**
    * Update user
+   * @async
+   * @function
+   * @name UserRepository#merge
    * @param {object} entity Entity
    * @throws {NotImplementedException}
-   * @returns {boolean|object} User entity if is success or false
+   * @returns {Promise<Object|boolean>} Returns the user entity if the user
+   * exists and the transaction is successful or false otherwise
    */
   merge() {
     throw new NotImplementedException();
@@ -27,9 +34,12 @@ class UserRepository {
 
   /**
    * Delete user
+   * @async
+   * @function
+   * @name UserRepository#remove
    * @param {string|number} id  Entity id
    * @throws {NotImplementedException}
-   * @returns {boolean} User entity is delete
+   * @returns {Promise<boolean>} User entity is delete
    */
   remove() {
     throw new NotImplementedException();
@@ -37,9 +47,13 @@ class UserRepository {
 
   /**
    * Retrieves a user by id
+   * @async
+   * @function
+   * @name UserRepository#get
    * @param {string|number} id Entity id
    * @throws {NotImplementedException}
-   * @returns {boolean|object} User entity if is success or false
+   * @returns {Promise<Object|boolean>} Returns the user entity if the user
+   * exists and the transaction is successful or false otherwise
    */
   get() {
     throw new NotImplementedException();
@@ -47,9 +61,13 @@ class UserRepository {
 
   /**
    * Retrieves a user by email
+   * @async
+   * @function
+   * @name UserRepository#getByEmail
    * @param {string} email User email eg. joe
    * @throws {NotImplementedException}
-   * @returns {boolean|object} User entity if is success or false
+   * @returns {Promise<Object|boolean>} Returns the user entity if the user
+   * exists and the transaction is successful or false otherwise
    */
   getByEmail() {
     throw new NotImplementedException();
@@ -57,8 +75,11 @@ class UserRepository {
 
   /**
    * Retrieve all users
+   * @async
+   * @function
+   * @name UserRepository#find
    * @throws {NotImplementedException}
-   * @returns {array} User entities
+   * @returns {Promise<Array>} User entities
    */
   find() {
     throw new NotImplementedException();
