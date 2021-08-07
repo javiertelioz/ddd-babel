@@ -8,8 +8,8 @@ import Logger from '../../logger';
  * @returns {void}
  */
 const start = async () => {
-  Logger.log(`💽 MongoDB\t ${process.env.MONGO_URI}`);
-  Logger.log(`\t Version\t ${version}\n`);
+  Logger.log(`💽 MongoDB ${process.env.MONGO_URI}`);
+  Logger.log(`Version ${version}`);
 
   try {
     const OPTIONS = {
