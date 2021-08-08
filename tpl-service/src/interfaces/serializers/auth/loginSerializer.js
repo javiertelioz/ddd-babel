@@ -1,31 +1,22 @@
-/**
- * Single auth
- * @ignore
- * @param {object} auth Auth entity
- * @returns {object} User serializer
- */
-const singleAuth = auth => ({ token: auth.token });
+import BaseSerializer from '../serializer';
 
 /**
- * Auth serializer
+ * Class representing a auth serializer.
+ *
  * @class
+ * @classdesc Auth serializer
+ * @augments BaseSerializer
  */
-class AuthSerializer {
+class AuthSerializer extends BaseSerializer {
   /**
-   * Auth serializer
-   * @param {array} data Entities
-   * @returns {Auth|Auth[]} Single auth or array
+   * Serialize an auth entity
+   * @function
+   * @implements {BaseSerializer#singleSerialize}
+   * @param {object} entity single auth entity
+   * @returns {object} Returns auth serialized entity
    */
-  static serialize(data) {
-    if (!data) {
-      throw new Error('Expect data to be not undefined nor null');
-    }
-
-    if (Array.isArray(data)) {
-      return data.map(singleAuth);
-    }
-
-    return singleAuth(data);
+  singleSerialize({token}) {
+    return { token };
   }
 }
 

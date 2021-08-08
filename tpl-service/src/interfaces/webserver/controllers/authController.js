@@ -1,9 +1,9 @@
 import httpStatus from 'http-status';
-import {Request,Response, NextFunction} from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 import HttpException from '../exceptions/httpException';
 
-import LoginSerializer from '../../serializers/auth/loginSerializer';
+import AuthSerializer from '../../serializers/auth/loginSerializer';
 
 import JwtManager from '../../../infrastructure/security/jwtManager';
 import BcryptManager from '../../../infrastructure/security/bcryptManager';
@@ -15,6 +15,7 @@ import UserRepositoryMongo from '../../../infrastructure/repositories/user/userR
 const jwtManager = new JwtManager();
 const bcryptManager = new BcryptManager();
 const userRepository = new UserRepositoryMongo();
+const authSerializer = new AuthSerializer()
 
 /**
  * Class representing a auth controller.
@@ -43,7 +44,7 @@ class AuthController {
         bcryptManager,
       });
 
-      return res.status(httpStatus.OK).send(LoginSerializer.serialize(token));
+      return res.status(httpStatus.OK).send(authSerializer.serialize(token));
     } catch (error) {
       next(new HttpException(httpStatus.BAD_REQUEST, error.message));
     }
