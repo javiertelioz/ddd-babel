@@ -1,5 +1,4 @@
 import httpStatus from 'http-status';
-import { Request, Response, NextFunction } from 'express';
 
 import HttpException from '../exceptions/httpException';
 
@@ -15,12 +14,13 @@ import UserRepositoryMongo from '../../../infrastructure/repositories/user/userR
 const jwtManager = new JwtManager();
 const bcryptManager = new BcryptManager();
 const userRepository = new UserRepositoryMongo();
-const authSerializer = new AuthSerializer()
+const authSerializer = new AuthSerializer();
 
 /**
  * Class representing a auth controller.
  * @class
- * @classdesc
+ * @classdesc Auth controller
+ * @namespace Controllers/AuthController
  */
 class AuthController {
   /**
@@ -28,11 +28,12 @@ class AuthController {
    *
    * @async
    * @function
+   * @memberof Controllers/AuthController
    * @param {Request} req Request
    * @param {Response} res Response
    * @param {NextFunction} next Next
-   * @throws {HttpException} Http exception
-   * @returns {void}
+   * @throws {HttpException} Http exception - Bad Request
+   * @returns {Response|NextFunction} Response
    */
   static async getAuthorization(req, res, next) {
     const { body } = req;
