@@ -2,33 +2,38 @@
 @hostname = localhost
 @port = 4000
 @host = {{hostname}}:{{port}}/api/v1
+@contentType = application/json
+@token = ""
 
 ###
 # Retrieve hello world!
 GET http://{{host}}/hello HTTP/1.1
-content-type: application/json
+Content-Type: {{contentType}}
 
 ###
 # Retrieve hello joe!
 GET http://{{host}}/hello/joe HTTP/1.1
-content-type: application/json
+Content-Type: {{contentType}}
 
 ###
 # Register user
+# @name createuser
 POST http://{{host}}/users HTTP/1.1
-content-type: application/json
+Content-Type: {{contentType}}
 
 {
     "firstName": "joe",
     "lastName": "doe",
-    "email": "joe.doe@gmail.com",
+    "email": "joedoe@gmail.com",
     "password": "joedoe123"
 }
 
 ###
 # Login user
+# @name login
+@token={{login.response.body.token}}
 POST http://{{host}}/auth/login HTTP/1.1
-content-type: application/json
+Content-Type: {{contentType}}
 
 {
     "email": "joe.doe@gmail.com",
@@ -38,20 +43,22 @@ content-type: application/json
 ###
 # Retrieve all users
 GET http://{{host}}/users HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
 
 ###
 # Retrieve a user
-GET http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+@userId = {{createuser.response.body.id}}
+GET http://{{host}}/users/{{userId}} HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
 
 ###
 # Update a user profile
-PUT http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+@userId = {{createuser.response.body.id}}
+PUT http://{{host}}/users/{{userId}} HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
 
 {
     "firstName": "Joe",
@@ -62,6 +69,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyM
 
 ###
 # Delete a user profile
-DELETE http://{{host}}/users/6108a96d96a9e006e66df938 HTTP/1.1
-content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTA4YTgyMzFlMjRmNDA1ZDFlZDRmOGIiLCJpYXQiOjE2Mjc5NTczMDgsImV4cCI6MTYyODA0MzcwOH0.GIGgSuIWCoIN1H1xT6vxIXYpX7n5pyP5HILnzvUSA4w
+@userId = {{createuser.response.body.id}}
+DELETE http://{{host}}/users/{{userId}} HTTP/1.1
+Content-Type: {{contentType}}
+Authorization: Bearer {{token}}
+
+
+### Swagger Documentation
+GET http://{{host}}/documentation
