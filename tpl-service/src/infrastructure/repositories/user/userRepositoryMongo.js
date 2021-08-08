@@ -13,6 +13,7 @@ import UserSchema from '../../orm/mongoose/schemas/user';
 class UserRepositoryMongo extends UserRepository {
   /**
    * Create a UserRepositoryMongo.
+   *
    * @constructor
    */
   constructor() {

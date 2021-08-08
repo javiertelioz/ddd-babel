@@ -8,11 +8,12 @@ const jwtManager = new JwtManager();
 /**
  * Verify authentication header
  * @function
+ * @module interfaces/webserver/middleware/Authorization
  * @param {Request} req Request object
  * @param {Response} res Response Object
  * @param {Function} next Next function
+ * @throws {HttpException} Http exception
  * @returns {Response} response
- * @throws {HttpException} Http error
  */
 function Authorization(req, res, next) {
   const { authorization } = req.headers;

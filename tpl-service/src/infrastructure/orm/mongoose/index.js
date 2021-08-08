@@ -23,7 +23,7 @@ const start = async () => {
 
     await connect(process.env.MONGO_URI, OPTIONS);
   } catch (error) {
-    Logger.error(`Database connection failed. error ${error}`);
+    Logger.error(`Database connection failed. details: ${error}`);
   }
 };
 

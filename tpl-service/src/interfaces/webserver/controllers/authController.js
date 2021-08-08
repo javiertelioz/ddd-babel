@@ -1,4 +1,5 @@
 import httpStatus from 'http-status';
+import {Request,Response, NextFunction} from 'express';
 
 import HttpException from '../exceptions/httpException';
 
@@ -18,15 +19,19 @@ const userRepository = new UserRepositoryMongo();
 /**
  * Class representing a auth controller.
  * @class
+ * @classdesc
  */
 class AuthController {
   /**
-   * Login Action
+   * Login handler
+   *
    * @async
+   * @function
    * @param {Request} req Request
    * @param {Response} res Response
-   * @param {Function} next Next
-   * @returns {Response} Login response
+   * @param {NextFunction} next Next
+   * @throws {HttpException} Http exception
+   * @returns {void}
    */
   static async getAuthorization(req, res, next) {
     const { body } = req;
