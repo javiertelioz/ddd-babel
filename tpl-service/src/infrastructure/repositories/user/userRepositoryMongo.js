@@ -4,13 +4,16 @@ import UserRepository from '../../../domain/repositories/user/userRepository';
 import UserSchema from '../../orm/mongoose/schemas/user';
 
 /**
- * Class representing a user repository mongo adapter.
+ * Class representing a mongo adapter for the users repository.
+ *
  * @class
- * @extends UserRepository
+ * @classdesc User management through the repository
+ * @augments UserRepository
  */
 class UserRepositoryMongo extends UserRepository {
   /**
    * Create a UserRepositoryMongo.
+   * @constructor
    */
   constructor() {
     super();
@@ -19,7 +22,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Create user
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#persist}
    * @param {User} userEntity User entity
    * @returns {Promise<User>} User entity
    */
@@ -41,7 +45,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Update user
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#merge}
    * @param {User} userEntity User entity
    * @returns {Promise<User|boolean>} User entity if it performs the operation successfully, otherwise it returns a boolean
    */
@@ -78,7 +83,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Delete a user
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#remove}
    * @param {string|number} id  Entity id
    * @returns {Promise<boolean>} if the user is deleted correctly it returns true otherwise false
    */
@@ -95,7 +101,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Retrieves a user by id
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#get}
    * @param {string|number} id Entity id
    * @returns {Promise<User|boolean>} if the user exists, this user returns otherwise a false
    */
@@ -118,7 +125,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Retrieves a user by email
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#getByEmail}
    * @param {string|number} email User email eg. joe
    * @returns {Promise<User|boolean>} if the user exists, this user returns otherwise a false
    */
@@ -141,7 +149,8 @@ class UserRepositoryMongo extends UserRepository {
   /**
    * Retrieve all users
    * @async
-   * @method
+   * @function
+   * @implements {UserRepository#find}
    * @param {array} filters filters
    * @param {pagination} pagination
    * @returns {Promise<User[]>} User entities

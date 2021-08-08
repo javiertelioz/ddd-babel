@@ -37,8 +37,11 @@ class Logger {
    * Info message
    * @static
    * @param {string} message Message
-   * @param {null} details Details
+   * @param {object|string} details Details
    * @returns {void}
+   *
+   * @example <caption>Example usage of Logger.log.</caption>
+   * Logger.log("Welcome to winston");
    */
   static log(message, details = null) {
     logger.info({ message, details });
@@ -48,19 +51,25 @@ class Logger {
    * Error message
    * @static
    * @param {string} message Message
-   * @param {null} details Details
+   * @param {object|string} details Details
    * @returns {void}
+   *
+   * @example <caption>Example usage of Logger.error.</caption>
+   * Logger.error("An error has occurred");
    */
   static error(message, details = null) {
     logger.error({ message, details });
   }
 
   /**
-   * Error message
+   * Warning message
    * @static
    * @param {string} message Message
-   * @param {null} details Details
+   * @param {object|string} details Details
    * @returns {void}
+   *
+   * @example <caption>Example usage of Logger.warning.</caption>
+   * Logger.warning("Warning something's not right", { error: "abc" });
    */
   static warning(message, details = null) {
     logger.warning({ message, details });

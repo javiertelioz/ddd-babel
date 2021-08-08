@@ -4,6 +4,7 @@ import Logger from '../../logger';
 
 /**
  * Start mongo server
+ * @ignore
  * @async
  * @returns {void}
  */
