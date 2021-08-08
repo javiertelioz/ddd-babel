@@ -5,10 +5,14 @@ import HttpException from './httpException';
  * @class
  * @classdesc class representing a bad request.
  * @extends HttpException
+ *
+ * @namespace Exceptions/BadRequestException
  */
 class BadRequestException extends HttpException {
   /**
    * Bad request exception
+   *
+   * @memberof Exceptions/BadRequestException
    * @returns {void}
    */
   constructor() {

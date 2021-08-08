@@ -4,6 +4,7 @@ import helloRouter from './hello';
 
 /**
  * Register routers
+ *
  * @ignore
  * @param {object} app Express application
  * @returns {void}

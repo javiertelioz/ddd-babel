@@ -1,3 +1,5 @@
+import httpStatus from 'http-status';
+
 import HttpException from '../../exceptions/httpException';
 
 import JwtManager from '../../../../infrastructure/security/jwtManager';
@@ -7,33 +9,35 @@ const jwtManager = new JwtManager();
 
 /**
  * Verify authentication header
+ *
  * @function
  * @module interfaces/webserver/middleware/Authorization
- * @param {Request} req Request object
- * @param {Response} res Response Object
- * @param {Function} next Next function
- * @throws {HttpException} Http exception
- * @returns {Response} response
+ *
+ * @param {Request} req Request
+ * @param {Response} res Response
+ * @param {NextFunction} next Next
+ * @throws {HttpException} Http exception - Unauthorized
+ * @returns {Response|NextFunction} Response
  */
 function Authorization(req, res, next) {
   const { authorization } = req.headers;
 
   if (!authorization || !authorization.startsWith('Bearer ')) {
-    throw new HttpException(401, 'Authentication token missing');
+    throw new HttpException(httpStatus.UNAUTHORIZED, 'Authentication token missing');
   }
 
   const token = authorization.replace(/Bearer/gi, '').replace(/ /g, '');
 
   if (!token) {
     res.sendStatus(401);
-    throw new HttpException(401, 'Authentication token missing');
+    throw new HttpException(httpStatus.UNAUTHORIZED, 'Authentication token missing');
   }
 
   try {
     req.user = VerifyAuthorization(token, { jwtManager });
     next();
   } catch (error) {
-    next(new HttpException(401, error.message));
+    next(new HttpException(httpStatus.UNAUTHORIZED, error.message));
   }
 }
 

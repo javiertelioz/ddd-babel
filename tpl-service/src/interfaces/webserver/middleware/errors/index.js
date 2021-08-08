@@ -1,5 +1,6 @@
 /**
  * Global error handler
+ *
  * @ignore
  * @param {Error} error Http error
  * @param {request} request Request object

@@ -2,6 +2,14 @@ import helmet from 'helmet';
 
 import Logger from '../../../../infrastructure/logger';
 
+/**
+ * Helmet middleware
+ * @ignore
+ * @param {Object} app Express application
+ * @returns {void}
+ *
+ * @see {@link https://www.npmjs.com/package/helmet|Helmet}
+ */
 export default app => {
   Logger.log('-> Helmet middleware');
 

@@ -5,10 +5,14 @@ import HttpException from './httpException';
  * @class
  * @classdesc Class representing a not found resource.
  * @extends HttpException
+ *
+ * @namespace Exceptions/NotFoundException
  */
 class NotFoundException extends HttpException {
   /**
    * Not found exception
+   *
+   * @memberof Exceptions/NotFoundException
    * @returns {void}
    */
   constructor() {
