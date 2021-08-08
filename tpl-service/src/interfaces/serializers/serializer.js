@@ -9,6 +9,7 @@ class BaseSerializer {
   /**
    * Serialize an entity or an array of them
    * @function
+   * @access public
    * @name BaseSerializer#serialize
    * @param {array|object} data List of entities or a single entity
    * @throws {NotUndefinedOrNullException} Not implements
@@ -18,15 +19,18 @@ class BaseSerializer {
     if (!data) {
       throw new NotUndefinedOrNullException();
     }
+
     if (Array.isArray(data)) {
       return data.map(this.singleSerialize);
     }
+
     return this.singleSerialize(data);
   }
 
   /**
    * Serialize an entity
    * @function
+   * @abstract
    * @name BaseSerializer#singleSerialize
    * @param {object} entity single entity
    * @throws {NotImplementedException} Not implements

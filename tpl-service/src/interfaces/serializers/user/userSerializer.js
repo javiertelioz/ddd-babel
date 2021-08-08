@@ -1,36 +1,32 @@
-/**
- * Serializer single user
- * @ignore
- * @param {User} user User entity
- * @returns {object} User serializer
- */
-const _serializeSingleUser = user => {
-  return {
-    id: user.id,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    email: user.email,
-  };
-};
+import BaseSerializer from '../serializer';
 
 /**
- * User serializer
+ * Class representing a user serializer.
+ *
  * @class
+ * @classdesc User serializer
+ * @augments BaseSerializer
+ *
+ * @namespace Serializers/UserSerializer
  */
-class UserSerializer {
+class UserSerializer extends BaseSerializer {
   /**
-   * User serializer
-   * @param {array} data Entities
-   * @returns {User|User[]} Single user or array
+   * Serialize an user entity
+   *
+   * @function
+   * @access protected
+   * @memberof Serializers/UserSerializer
+   * @implements {BaseSerializer#singleSerialize}
+   * @param {object} user single user entity
+   * @returns {object} Returns user serialized entity
    */
-  static serialize(data) {
-    if (!data) {
-      throw new Error('Expect data to be not undefined nor null');
-    }
-    if (Array.isArray(data)) {
-      return data.map(_serializeSingleUser);
-    }
-    return _serializeSingleUser(data);
+  singleSerialize(user) {
+    return {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+    };
   }
 }
 
