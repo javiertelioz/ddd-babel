@@ -7,6 +7,12 @@ import handleErrors from './middleware/errors';
 
 import NotFoundException from './exceptions/notFoundException';
 
+/**
+ * Create Server
+ *
+ * @ignore
+ * @returns {object} Application
+ */
 const createServer = () => {
   const app = express();
 

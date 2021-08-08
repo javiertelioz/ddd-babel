@@ -1,16 +1,14 @@
-// import { hashSync } from "bcrypt";
-
-// import { encrypt } from "../../../security/crypto";
-
 /**
- * A Model represents a table in the database. Instances of this class represent a database row.
+ * A Model represents a table in the database.
+ * Instances of this class represent a database row.
+ *
  * @class
  * @classdesc User model
  * @param {object} sequelize Sequelize instance
  * @param {object} DataTypes Sequelize dataTypes
  * @returns {object} User model
  */
-export default (sequelize, DataTypes) => {
+const UserModel = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'user',
     {
@@ -58,15 +56,7 @@ export default (sequelize, DataTypes) => {
       paranoid: true,
       underscored: true,
       comment: 'User Table',
-      hooks: {
-        /*beforeCreate: (user) => {
-          const randomString = Math.random().toString(36).substring(7);
-          const verificationCode = encrypt(randomString);
-
-          user.password = hashSync(user.password, 10);
-          user.verificationCode = verificationCode.encryptedData;
-        },*/
-      },
+      hooks: {},
     }
   );
 
@@ -75,3 +65,5 @@ export default (sequelize, DataTypes) => {
 
   return User;
 };
+
+export default UserModel;
